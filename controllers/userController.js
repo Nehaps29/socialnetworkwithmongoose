@@ -92,7 +92,7 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { users: req.body } },
+        { $addToSet: { friends: req.params.friendId} },
         { runValidators: true, new: true }
       );
 
@@ -112,7 +112,7 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { user: { userId: req.params.userId } } },
+        { $pull: { user: { friends: req.params.friendId } } },
         { runValidators: true, new: true }
       );
 
